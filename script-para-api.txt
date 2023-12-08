@@ -11,10 +11,19 @@ Projeto de interface web que acessa API;
 
 
 ******Credenciais para requisicao******
-{"admin":"13|Sx6JMCeG2E1NGWotqHwtReKOdleWIPBGZDYuZRLc0672a7f6",
+{
+"admin":"13|Sx6JMCeG2E1NGWotqHwtReKOdleWIPBGZDYuZRLc0672a7f6",
 "update":"14|5oD3ouNT263moQD9Q9jjFxCt7YC86vnQjy3YSt4y5e7eccc6",
-"basic":"15|xY2TYJyZTGmn2c3gdBeHStlzfpEUDbrXahhcDieqc38c739a"}
+"basic":"15|xY2TYJyZTGmn2c3gdBeHStlzfpEUDbrXahhcDieqc38c739a"
+}
 
+$credentials=[
+        'email'=> 'admin1@admin.com',
+        'password'=> 'password'
+    ];
+{"admin":"16|oASU1EIXVJwEesbraJNl385nNElU1cd0i09p3eFF38cbc03e",
+"update":"17|ceGT2b8elntCnbwKXqYfvV2ejnVdR5SFS2za4Ch5991eaa59",
+"basic":"18|OY4D8perXxM2SkMR2RwxNhifvEhzmykTrVo8YNePfb21021a"}
 
 *********Payload p/ CREATE usuario********
 {	

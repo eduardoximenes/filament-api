@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Api\V1;
 
+
 use App\Models\Customer;
 
 
@@ -14,6 +15,7 @@ use App\Http\Resources\V1\CustomerCollection;
 use App\Filters\V1\CustomersFilter;
 use App\Http\Requests\V1\StoreCustomerRequest;
 use App\Http\Requests\V1\UpdateCustomerRequest;
+use App\Http\Requests\V1\DeleteCustomerRequest;
 use Illuminate\Http\JsonResponse;
 use PhpOption\None;
 
@@ -74,13 +76,24 @@ class CustomerController extends Controller
     public function update(UpdateCustomerRequest $request, Customer $customer)
     {
         $customer->update($request->all());
+
+        return response()->json([
+            'message'=> 'created',
+            'data'=> $customer,
+            'errors'=> null,
+        ]);
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Customer $customer)
+    public function destroy(DeleteCustomerRequest $request, Customer $customer)
     {
-        $customer->delete();
+        if ($request->authorize()) {
+            $customer->delete();
+            return response()->json(['message' => 'Customer deleted successfully'], 200);
+        }
+
+        return null;
     }
 }

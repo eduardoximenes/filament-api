@@ -24,21 +24,21 @@ Route::get('/', function () {
 
 Route::get('/setup', function () {
     $credentials=[
-        'email'=> 'teste@0800.com',
+        'email'=> 'admin1@admin.com',
         'password'=> 'password'
     ];
 
     if (!Auth::attempt($credentials)) {
         $user= new App\Models\User();
 
-        $user->name = 'Teste';
+        $user->name = 'Admin';
         $user->email = $credentials['email'];
         $user->password = Hash::make($credentials['password']);
 
         $user->save();
 
         if(Auth::attempt($credentials)){
-            //$user= Auth::user();
+            $user= Auth::user();
             $user = User::where('email', $credentials['email'])->first();
 
             $adminToken= $user->createToken('admin-token', ['create', 'update', 'delete']);
