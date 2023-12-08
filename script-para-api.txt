@@ -1,0 +1,52 @@
+********CRUD******
+? Com a api continuo fazendo operações de crud e quais outras sao possiveis?
+
+Projeto de interface web que acessa API;
+
+
+**Create-> Post->       Customer|BulkInvoice
+**Read->   Get->        Customer|Customers|Invoices
+**Update-> Put|Patch->  Customer
+**Delete-> Delete->	Customer
+
+
+******Credenciais para requisicao******
+{"admin":"13|Sx6JMCeG2E1NGWotqHwtReKOdleWIPBGZDYuZRLc0672a7f6",
+"update":"14|5oD3ouNT263moQD9Q9jjFxCt7YC86vnQjy3YSt4y5e7eccc6",
+"basic":"15|xY2TYJyZTGmn2c3gdBeHStlzfpEUDbrXahhcDieqc38c739a"}
+
+
+*********Payload p/ CREATE usuario********
+{	
+	"name": "Joao PTBR",
+        "type": "B",
+        "email": "teste@teste.com",
+        "address": "Rua do teste 0800",
+        "city": "Alaska",
+        "state": "Alaska",
+        "postalCode": "08000-000"
+}
+*********Payload p/ CREATE invoices atrelados a um usuario********
+[
+ {
+            "customerId": "1",
+            "amount": "299",
+            "status": "P",
+            "billedDate": "2023-10-10 10:10:10",
+	    "paidDate": "2023-11-11 11:11:11"
+        },
+        {
+            "customerId": "1",
+            "amount": "499",
+            "status": "B",
+            "billedDate": "2023-11-11 11:11:11",   
+        }
+]
+
+************operacao de READ**************
+->Qualquer token faz a leitura, e só usar as urls para dar get;
+http://localhost:8000/api/v1/invoices
+http://localhost:8000/api/v1/invoices?customerId[eq]=1
+http://localhost:8000/api/v1/customers/
+http://localhost:8000/api/v1/customers/1?includeInvoices=true
+
