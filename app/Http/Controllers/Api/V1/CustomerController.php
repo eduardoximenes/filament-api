@@ -38,7 +38,8 @@ class CustomerController extends Controller
         }
 
         //->paginate()->appends($request->query()), se quiser paginar a api, coloque na frente de customers;
-        return new CustomerCollection($customers->get());
+        // ->get()
+        return new CustomerCollection($customers->paginate()->appends($request->query()));
     }
 
     /**
