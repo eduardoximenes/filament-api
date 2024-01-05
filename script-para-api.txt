@@ -1,8 +1,4 @@
 ********CRUD******
-? Com a api continuo fazendo operações de crud e quais outras sao possiveis?
-
-Projeto de interface web que acessa API;
-
 
 **Create-> Post->       Customer|BulkInvoice
 **Read->   Get->        Customer|Customers|Invoices
