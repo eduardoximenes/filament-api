@@ -27,18 +27,22 @@ class CustomerController extends Controller
     public function index(Request $request)
     {
         $filter = new CustomersFilter();
-        $filterItems= $filter->transform($request); //[['column', 'operator', 'value']]
+        $filterItems = $filter->transform($request);
 
-        $includeInvoices= $request->query('includeInvoices');
+        $includeInvoices = $request->query('includeInvoices');
+        $orderBy = $request->query('orderBy');
+        $sortOrder = $request->query('sortOrder');
 
-        $customers= Customer::where($filterItems);
+        $customers = Customer::where($filterItems);
 
         if ($includeInvoices) {
             $customers = $customers->with('invoices');
         }
 
-        //->paginate()->appends($request->query()), se quiser paginar a api, coloque na frente de customers;
-        // ->get()
+        if ($orderBy && $sortOrder) {
+            $customers = $customers->orderBy($orderBy, $sortOrder);
+        }
+
         return new CustomerCollection($customers->paginate()->appends($request->query()));
     }
 
