@@ -30,10 +30,19 @@ class CustomerController extends Controller
         $filterItems = $filter->transform($request);
 
         $includeInvoices = $request->query('includeInvoices');
+        $name = $request->query('name');
+
         $orderBy = $request->query('orderBy');
         $sortOrder = $request->query('sortOrder');
 
+        $orderBy2 = $request->query('orderBy2');
+        $sortOrder2 = $request->query('sortOrder2');
+
         $customers = Customer::where($filterItems);
+
+        if ($name) {
+            $customers = $customers->where('name', 'like', '%' . $name . '%');
+        }
 
         if ($includeInvoices) {
             $customers = $customers->with('invoices');
@@ -41,6 +50,10 @@ class CustomerController extends Controller
 
         if ($orderBy && $sortOrder) {
             $customers = $customers->orderBy($orderBy, $sortOrder);
+        }
+
+        if ($orderBy2 && $sortOrder2) {
+            $customers = $customers->orderBy($orderBy2, $sortOrder2);
         }
 
         return new CustomerCollection($customers->paginate()->appends($request->query()));
